@@ -1,17 +1,9 @@
 ---------------------------- PARTE 1 ------------------------------------------
 
 --1
--- se a lista casar com padrao (a:b:xs) verifica se a == b se nao for,
--- ja da resposta como falsa, se for faz um and chamando novamene equals agora
--- com b:xs, usando o fato que se a==b e b==c logo a==c
--- se a lista for vazia ou unitaria todos os elementos dela são iguais
--- Se a lista nao for de 4 elementos gerar um error
-equals [] = True
-equals [x] = True
-equals (a:b:xs)
-  | length(a:b:xs) /= 4 = error "Entrar com uma lista de 4 elementos"
-  | a == b = True && equals (b:xs)
-  | otherwise = False
+-- A lista tem que ter 4 elementos e todos os valores da calda tem que ser
+-- igual a cabeca da lista
+equals (x:xs) = length (x:xs) == 4 && all (==x) xs
 
 --2
 -- Usando a função filter passando como predicado uma funçao anonima, cujo a
@@ -57,16 +49,9 @@ listsEquals x y = (length x == length y) && (x == filter (\a -> elem a y) x)
 
 
 -- 10
--- Se a lista for vasia o elemento se repete 0x independente do elemento
--- se casar com um elemento e uma lista, verifica se o elemeto é igual a cabeça
--- da lista se for faz 1 + a função com o elemento e a calda da lista
--- se nao so chama a função com o elemento e a calda
--- assim toda vez que o elemento for igual a cabeça da lista soma 1 e quando a,
--- lista acabar soma 0
-rep _ [] = 0
-rep n (x:xs)
-	| n == x = 1 + rep n xs
-	| otherwise = rep n xs
+-- Por compreção de lista crio uma lista com os elementos n da lista x
+-- pegando o tamanho dessa lista tenho quantas vezes que n aparece em x
+rep n x = length [l | l <- x, l == n]
 
 -- 11
 -- Primeiro controi uma lista n que recebe os elementos de x que satisfazem a
@@ -91,7 +76,14 @@ posicao n (x:xs)
 
 ---------------------------- PARTE 3 ------------------------------------------
 --16
--- Crima uma lista l com os elementos de 1 ate n que satisfazem a condicao, de
+-- Cria uma lista l com os elementos de 1 ate n que satisfazem a condicao, de
 -- que os divisores deste numero são somente 1 e o proprio numero,
 -- estou usando a funcao divs implementada na questao 7
 primos n = [l | l <- [1..n], (divs l) == [1,l]]
+
+--20
+-- Vai creiando uma lista com a aplicacao de f em cada elemento da tripla
+-- e o proximo elemento da lista é o map com a f e as caldas da lista,
+-- quando a menor lista acabar para a funçao
+map3 f (x:xs) (y:ys) (z:zs)= (f x, f y, f z) : map3 f xs ys zs
+map3 _ _ _ _ = []
