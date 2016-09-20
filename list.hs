@@ -1,4 +1,4 @@
----------------------------- PARTE 1 ------------------------------------------
+﻿---------------------------- PARTE 1 ------------------------------------------
 
 --1
 -- A lista tem que ter 4 elementos e todos os valores da calda tem que ser
@@ -98,3 +98,11 @@ split x = (take n x, drop (n+1) x) where n = length(takeWhile(/= '/') x)
 -- quando a menor lista acabar para a funçao
 map3 f (x:xs) (y:ys) (z:zs)= (f x, f y, f z) : map3 f xs ys zs
 map3 _ _ _ _ = []
+
+
+---------------------------- PARTE 3 ------------------------------------------
+
+-- 22
+-- Funcao com where que calcula a potencia mesmo sendo o expoente negativo.
+pow x y | y >= 0 = x^y
+	| otherwise = np x where np = (1/) . (^(-y))
