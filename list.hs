@@ -81,8 +81,19 @@ posicao n (x:xs)
 -- estou usando a funcao divs implementada na questao 7
 primos n = [l | l <- [1..n], (divs l) == [1,l]]
 
+--17
+-- Verifica se a lista x eh igual a lista x de tras para frente
+polindrome x = x == reverse x
+
+--18
+-- pega os n primeiros elementos da string coloca na parte 1 da tupla,
+-- joga fora os n+1 primeira elenetos coloca na parte 2 da tupla,
+-- onde n é o numerdo de elementos ate o '/', ou seja pega a string
+-- ate o '/' e a string retirando a parte antes do '/' e o '/'
+split x = (take n x, drop (n+1) x) where n = length(takeWhile(/= '/') x)
+
 --20
--- Vai creiando uma lista com a aplicacao de f em cada elemento da tripla
+-- Vai criando uma lista com a aplicacao de f em cada elemento da tripla
 -- e o proximo elemento da lista é o map com a f e as caldas da lista,
 -- quando a menor lista acabar para a funçao
 map3 f (x:xs) (y:ys) (z:zs)= (f x, f y, f z) : map3 f xs ys zs
