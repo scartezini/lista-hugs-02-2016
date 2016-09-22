@@ -135,3 +135,73 @@ somadivide xs = ((sum . take 5) xs) / n where n = (sum . take 3) xs
 pegaNprimeirosParesOuImpares z
 					| z >= 0 && z < 10  =  take z [2,4..10]
 	           		| z >= 10 = take z [1,3..] 
+
+---------------------------- PARTE 5 ------------------------------------------
+
+
+-- 28
+desconhecido = do putStr "Impossível identificar. Animal desconhecido."
+		return ()
+		
+mamifero = do putStr "É carnívoro (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then carnivoro
+		else putStr "É ungulado (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then ungulado
+		else desconhecido
+	
+ave = do putStr "voa (s/n)?"
+		if carac=='S' || carac=='s' then voa
+		else putStr "Tem pescoço comprido (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Avestruz"
+		else putStr "Nada (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then nada
+		else desconhecido
+	
+carnivoro = do putStr "Tem cor amarelada (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then amarelado
+		else desconhecido
+		
+ungulado = do putStr "Tem pescoço grande (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then pescoco
+		else putStr "Tem listras pretas (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Zebra"
+		else desconhecido
+
+amarelado = do putStr "Tem manchas pretas (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Guepardo"
+		else putStr "Tem listras pretas (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Tigre"
+		else desconhecido
+
+pescoco = do putStr "Tem pernas grandes (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Girafa"
+		else desconhecido
+
+voa = do putStr "Tem asas longas (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Albatroz"
+		else desconhecido
+		
+nada = do putStr "É preto e branco (s/n)?"
+		carac <- getChar
+		if carac=='S' || carac=='s' then putStr "Pinguim"
+		else desconhecido
+
+Main>
+putStr "É mamífero (s/n)?"
+carac <- getChar
+if carac=='S' || carac=='s' then mamifero
+else putStr "É ave (s/n)?"
+carac <- getChar
+if carac=='S' || carac=='s' then ave
+else desconhecido
