@@ -100,9 +100,38 @@ map3 f (x:xs) (y:ys) (z:zs)= (f x, f y, f z) : map3 f xs ys zs
 map3 _ _ _ _ = []
 
 
----------------------------- PARTE 3 ------------------------------------------
+---------------------------- PARTE 4 ------------------------------------------
 
 -- 22
 -- Funcao com where que calcula a potencia mesmo sendo o expoente negativo.
 pow x y | y >= 0 = x^y
 	| otherwise = np x where np = (1/) . (^(-y))
+
+-- 24
+-- A função somaDez mapeia cada elemento da lista xs 
+-- Aplicando a função lambda adicionando 10 a cada elemento
+-- O resultado é uma lista de cada elemento de xs adicionado 10.
+-- By Rafael da Silva Rocha - 12/0133229
+somaDez xs = map(\x -> x+10) xs
+
+-- 25
+-- A função somadivide usa composição de funções pegando os 5 primeiros elementos
+-- da lista xs e somando-os, esse resultado é dividido pela soma dos 3 primeiros
+-- elementos de xs. Se a lista for vazia o resultado é zero.
+-- A lista se aplica tanto para uma lista de Int e uma lista de Float, ou seja,
+-- é polimórfica.
+-- By Rafael da Silva Rocha - 12/0133229
+somadivide [] = 0;
+somadivide xs = ((sum . take 5) xs) / n where n = (sum . take 3) xs
+
+-- 26
+-- A função usando guarda pega os z primeiros pares se z estiver for maior igual a zero
+-- ou menor que 10
+-- Se z for maior que 10, pega os z primeiros número ímpares.
+-- Para pegar os z números ímpares é usando a lista infinita[1,3..] para não estourar a memoria
+-- é usado avaliação preguiçosa onde só é pegado a lista após saber a quantidade de elementos
+-- que serão necessários.
+-- By Rafael da Silva Rocha - 12/0133229
+pegaNprimeirosParesOuImpares z
+					| z >= 0 && z < 10  =  take z [2,4..10]
+	           		| z >= 10 = take z [1,3..] 
